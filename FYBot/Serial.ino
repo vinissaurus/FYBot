@@ -10,6 +10,7 @@ void s_loop(){
     if(serial_message.length()>0){
     if(serial_message.indexOf("reset")>0){
       serial("opaa");
+      delay(1000);
       }
       }
     }

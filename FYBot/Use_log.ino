@@ -16,20 +16,15 @@ const int   daylightOffset_sec = 3600;
 int unstaged_requests = 0;
 int staged_requests = 0;
 String last_day;//by david august
-int MM,DD,YYYY;
+int month, day, year;
 
 
-void e_save(int Position, int Value) {
-  EEPROM.begin(512);
-  EEPROM.write(Position, Value);
-  EEPROM.commit();
-  EEPROM.end();
+void e_save_date(int Position, String Value) {
 }
 
-int e_read(int Position) {
-  EEPROM.begin(512);
-  return EEPROM.read(Position);
-  EEPROM.end();
+String e_read_date() {
+String yeppers="10/26/2021";
+return yeppers;
 }
 
 void delete_log() {
@@ -41,24 +36,37 @@ void delete_log() {
 }
 
 void startup_reading() {
-  last_day = e_read(LAST_DAY);
-  staged_requests = e_read(TOTAL_REQUESTS);
+  last_day = e_read_date();
+  //staged_requests = e_read(TOTAL_REQUESTS);
   configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
+  struct tm timeinfo;
 
-  if(last_day.indexOf("/")==-1){
-//    struct tm timeinfo;
-//    if(getLocalTime(&timeinfo)){
-//      char data_in[20];
-//      strftime(data_in,20,"%B/%d/%Y",&timeinfo);
-//      DD=data_in[0,2].toInt();serial(String(DD));
-//      MM=data_in[3,5].toInt();serial(String(MM));
-//      YYYY=data_in[6,8].toInt();serial(String(YYYY));
-//      
-//    }
-//    
+
+  if (last_day.indexOf("/") == -1) {
+
+    if (getLocalTime(&timeinfo)) {
+
+      month = (int)(&timeinfo, "%m");
+      day = (int)(&timeinfo, "%d");
+      year = (int)(&timeinfo, "%Y");
+      String full_date = String(month) + "/" + String(day) + "/" + String(year);
+      serial("Just wrote:");
+      serial(full_date);
+      //e_save(LAST_DAY, full_date);
+
     }
+
+  }
+  else {
+    month = last_day.substring(0, 2).toInt();
+    day = last_day.substring(3, 5).toInt();
+    year = last_day.substring(6, 10).toInt();
+    String full_date = String(month) + "/" + String(day) + "/" + String(year);
+    serial("Just read:");
+    serial(full_date);
+  }
   //xx/xx/xxxx
-  
+
 }
 
 void request() {
@@ -67,7 +75,7 @@ void request() {
 
   if (unstaged_requests > 10) {
     int total_requests = staged_requests + unstaged_requests;
-    e_save(TOTAL_REQUESTS, total_requests);
+    //e_save(TOTAL_REQUESTS, total_requests);
     unstaged_requests = 0;
   }
 }
@@ -80,7 +88,7 @@ void request() {
 //}
 
 void log_loop() {
-  
+
 
   //Serial.println(timeClient.getDay());
   //delay(1000);
