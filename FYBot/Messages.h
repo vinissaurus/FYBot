@@ -20,12 +20,12 @@ String get_mess() {
   return message[random(message_quant)];
 }
 
-String read_mess(String m){
-  if(m.indexOf("fuck")!=-1){
-    return message2[random(message_quant)];
-    }
-      if(m.indexOf("info")!=-1){
-    return message2[random(message_quant)];
-    }
-    
-  }
+//String read_mess(String m){
+//  if(m.indexOf("fuck")!=-1){
+//    return message2[random(message_quant)];
+//    }
+//      if(m.indexOf("info")!=-1){
+//    return message2[random(message_quant)];
+//    }
+//    
+//  }

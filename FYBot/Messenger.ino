@@ -30,9 +30,8 @@ void t_loop() {
   TBMessage msg;
 
   // if there is an incoming message...
-  if (myBot.getNewMessage(msg)){    
-
-
+  if (myBot.getNewMessage(msg)){  
+    
     String message ;  
     // Send a message to specific user who has started your bot
     // Target user can find it's own userid with the bot @JsonDumpBot 

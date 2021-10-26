@@ -5,6 +5,7 @@ void setup() {
   s_setup();
   wifi_setup();
   t_setup();
+  startup_reading();
   randomSeed(analogRead(0));
 }
 
@@ -12,4 +13,5 @@ void loop() {
   wifi_loop();
   t_loop();
   s_loop();
+  log_loop();
 }
