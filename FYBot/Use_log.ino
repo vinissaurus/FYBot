@@ -1,5 +1,9 @@
 #include <EEPROM.h>
-#include <NTPClient.h>
+#include "time.h"
+
+const char* ntpServer = "pool.ntp.org";
+const long  gmtOffset_sec = 0;
+const int   daylightOffset_sec = 3600;
 
 //-------------------------EEPROM addresses
 #define LAST_DAY 0
@@ -12,9 +16,8 @@
 int unstaged_requests = 0;
 int staged_requests = 0;
 String last_day;//by david august
+int MM,DD,YYYY;
 
-WiFiUDP ntpUDP;
-NTPClient timeClient(ntpUDP, "europe.pool.ntp.org", 3600, 60000);
 
 void e_save(int Position, int Value) {
   EEPROM.begin(512);
@@ -40,7 +43,22 @@ void delete_log() {
 void startup_reading() {
   last_day = e_read(LAST_DAY);
   staged_requests = e_read(TOTAL_REQUESTS);
-  timeClient.begin();
+  configTime(gmtOffset_sec, daylightOffset_sec, ntpServer);
+
+  if(last_day.indexOf("/")==-1){
+//    struct tm timeinfo;
+//    if(getLocalTime(&timeinfo)){
+//      char data_in[20];
+//      strftime(data_in,20,"%B/%d/%Y",&timeinfo);
+//      DD=data_in[0,2].toInt();serial(String(DD));
+//      MM=data_in[3,5].toInt();serial(String(MM));
+//      YYYY=data_in[6,8].toInt();serial(String(YYYY));
+//      
+//    }
+//    
+    }
+  //xx/xx/xxxx
+  
 }
 
 void request() {
@@ -62,8 +80,8 @@ void request() {
 //}
 
 void log_loop() {
-  timeClient.update();
+  
 
-  Serial.println(timeClient.getFormattedTime());
-  delay(1000);
+  //Serial.println(timeClient.getDay());
+  //delay(1000);
 }

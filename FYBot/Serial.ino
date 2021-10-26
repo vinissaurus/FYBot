@@ -5,10 +5,10 @@ void s_setup(){
 
 
 void s_loop(){
-  if(Serial.available()){
+  if(Serial.available()>0){
     String serial_message=Serial.readString();
     if(serial_message.length()>0){
-    if(serial_message=="reset"){
+    if(serial_message.indexOf("reset")>0){
       serial("opaa");
       }
       }

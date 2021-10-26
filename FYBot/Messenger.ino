@@ -7,8 +7,6 @@ const char* token = bot_token;     // REPLACE myToken WITH YOUR TELEGRAM BOT TOK
 
 void t_setup() {
     serial("Starting TelegramBot...");
-
-
   
     // To ensure certificate validation, WiFiClientSecure needs time upadated
     // myBot.setInsecure(false);
@@ -33,14 +31,11 @@ void t_loop() {
   if (myBot.getNewMessage(msg)){  
     
     String message ;  
-    // Send a message to specific user who has started your bot
-    // Target user can find it's own userid with the bot @JsonDumpBot 
-    // https://t.me/JsonDumpBot         
-    //int32_t userid = 1234567890;  
+    
     //myBot.sendToUser(userid, msg.text); 
     
     // echo the received message
-    myBot.sendMessage(msg, get_mess().c_str());
+    myBot.sendMessage(msg, read_mess(String(msg.text)).c_str());
 
     // check if the message comes from a chat group (the group id is negative)
     if (msg.chatId < 0) {

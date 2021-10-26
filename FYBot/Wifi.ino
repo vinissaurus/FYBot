@@ -1,4 +1,3 @@
-
 #include <WiFiManager.h> // https://github.com/tzapu/WiFiManager
 
 #define TRIGGER_PIN 0

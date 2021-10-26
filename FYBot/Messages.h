@@ -7,11 +7,11 @@ String message[] = {
 };
 
 String message2[] = {
-  "Who the FUCK do u think you are?",
-  "Shut the FUCK up!",
-  "Are you FUCKing kidding me?",
-  "FUCKing psycho!",
-  "Youre FUCKed up!"
+  "Who the FUCK do u think YOU are?",
+  "YOU Shut the FUCK up!",
+  "Are YOU FUCKing kidding me?",
+  "YOU FUCKing psycho!",
+  "YOU're FUCKed up!"
 };
 
 int message_quant = 5;
@@ -20,12 +20,16 @@ String get_mess() {
   return message[random(message_quant)];
 }
 
-//String read_mess(String m){
-//  if(m.indexOf("fuck")!=-1){
-//    return message2[random(message_quant)];
-//    }
-//      if(m.indexOf("info")!=-1){
-//    return message2[random(message_quant)];
-//    }
-//    
-//  }
+String read_mess(String m) {
+  String answer = "";
+  if (m.indexOf("fuck") >0) {
+    answer = message2[random(message_quant)];
+  }
+  if (m.indexOf("info") != -1) {
+    //answer = message2[random(message_quant)];
+  }
+  else{
+    answer = message[random(message_quant)];
+    }
+  return answer;
+}
