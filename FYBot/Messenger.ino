@@ -6,7 +6,7 @@ AsyncTelegram myBot;
 const char* token = bot_token;     // REPLACE myToken WITH YOUR TELEGRAM BOT TOKEN
 
 void t_setup() {
-    serial("Starting TelegramBot...");
+    Serial.println("Starting TelegramBot...");
   
     // To ensure certificate validation, WiFiClientSecure needs time upadated
     // myBot.setInsecure(false);
@@ -16,11 +16,11 @@ void t_setup() {
     myBot.setTelegramToken(token);
     
     // Check if all things are ok
-    serial("\nTest Telegram connection... ");
+    Serial.println("\nTest Telegram connection... ");
     myBot.begin();
     
-    serial("Bot name:");  
-    serial(myBot.userName);
+    //Serial.println("Bot name:");  
+    //Serial.println(myBot.userName);
 }
 
 void t_loop() {
@@ -36,6 +36,7 @@ void t_loop() {
     
     // echo the received message
     myBot.sendMessage(msg, read_mess(String(msg.text)).c_str());
+    request();
 
     // check if the message comes from a chat group (the group id is negative)
     if (msg.chatId < 0) {

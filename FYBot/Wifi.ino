@@ -87,7 +87,7 @@ void wifi_setup() {
 void wifi_reset() {
   wm.resetSettings();
   ESP.restart();
-  serial("Just erased wifi config");
+  Serial.println("Just erased wifi config");
 }
 
 String getParam(String name) {
@@ -107,5 +107,5 @@ void saveParamCallback() {
 void wifi_loop() {
   if (wm_nonblocking) wm.process(); // avoid delays() in loop when non-blocking and other long running code
 
-  // put your main code here, to run repeatedly:
+  
 }

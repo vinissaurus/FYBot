@@ -22,15 +22,21 @@ String get_mess() {
 
 String read_mess(String m) {
   String answer = "";
-  
+
   if (m.indexOf("fuck") >= 0) {
     answer = message2[random(message_quant)];
   }
-  if (m.indexOf("info") >=0) {
-    answer = "...no donut for you...";
+  if (m.indexOf("info") >= 0) {
+    answer = use_info();
   }
-  if (m.indexOf("fuck") < 0) {
+  if (m.indexOf("fuck") < 0 && answer.length()==0) {
     answer = message[random(message_quant)];
   }
+//  if (m.indexOf(com_1) > 0) {
+//    answer = "Reset!";
+//  }
+//  if (m.indexOf(com_2) > 0) {
+//    answer = "Init!";
+//  }
   return answer;
 }
