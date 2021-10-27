@@ -3,7 +3,9 @@ String message[] = {
   "Go FUCK yourself!",
   "FUCK",
   "FUCK u motherFUCKer",
-  "FUCK this, FUCK that and FUCK YOU!"
+  "FUCK this, FUCK that and FUCK YOU!",
+  "I'll FUCK YOUr mother!",
+  "WTFUCK!"
 };
 
 String message2[] = {
@@ -11,10 +13,12 @@ String message2[] = {
   "YOU Shut the FUCK up!",
   "Are YOU FUCKing kidding me?",
   "YOU FUCKing psycho!",
-  "YOU're FUCKed up!"
+  "YOU're FUCKed up!",
+  "Get the FUCK out!",
+  "F\nU\nC\nC\n\nY\nO\nU"
 };
 
-int message_quant = 5;
+int message_quant = 7;
 
 String get_mess() {
   return message[random(message_quant)];

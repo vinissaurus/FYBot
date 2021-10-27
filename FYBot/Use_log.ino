@@ -2,7 +2,7 @@
 #include "time.h"
 
 const char* ntpServer = "pool.ntp.org";
-const long  gmtOffset_sec = 0;
+const long  gmtOffset_sec = -3;
 const int   daylightOffset_sec = 3600;
 
 //-------------------------EEPROM addresses
@@ -86,6 +86,7 @@ void e_read() {
       the_requests += char(EEPROM.read(starting + i));
     }
     staged_requests = the_requests.toInt();
+    total_requests = staged_requests;
   }
   //Serial.println(memPSK);
   EEPROM.end();
